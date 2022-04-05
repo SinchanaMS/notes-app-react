@@ -1,3 +1,100 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,300;0,400;0,700;1,400&family=Amatic+SC:wght@400;700&family=Andika+New+Basic:ital,wght@1,700&family=Comforter&family=Montserrat:ital,wght@1,800&family=Open+Sans:wght@300;500&family=Roboto:wght@100;700&display=swap');
+@import url("https://clay-ui.netlify.app/stylesheets/index.css");
+
+:root {
+  --BODY-BG-COLOR: #f3eee7;
+  --NOTE-BG-COLOR: #d6c1a6;
+  --NEW-NOTE-BG-COLOR: #98b2a9;
+  --NEW-NOTE-CTA-BG: #a7d2c4;
+  --AUTH-CARD-BG-COLOR:#e7e0d2;
+  --AUTH-CTA-BG:#767065;
+}
+
+body {
+  background-color: var(--BODY-BG-COLOR);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  margin: auto;
+  padding: 10px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-weight: 600;
+  margin: 1rem auto;
+}
+
+.container {
+  max-width: 70%;
+  margin: auto;
+  padding: 1rem;
+}
+
+.note.new {
+  background-color: var(--NEW-NOTE-BG-COLOR);
+}
+
+.new .note-title {
+  width: 100%;
+  background-color: var(--NEW-NOTE-BG-COLOR);
+  outline: none;
+  border: none;
+}
+
+.new .note-footer {
+  align-self: flex-end;
+}
+
+.save-note {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--NEW-NOTE-CTA-BG)
+}
+
+.notes-list {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.empty-list-text {
+  margin: 15px;
+}
+
+.note-title {
+  font-weight: 500;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+  background-color: var(--NOTE-BG-COLOR);
+  border: none;
+  border-radius: 9px;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+.delete-note {
+  border: none;
+  background: none;
 }
