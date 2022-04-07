@@ -1,0 +1,24 @@
+.color {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0.2rem;
+    border-radius: 50%;
+    border: thin solid var(--DEFAULT-GREY);
+  }
+  .color-picker {
+    position: relative;
+  }
+  
+  .color-wrapper {
+    width: 10rem;
+    height: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--COLOR-PICKER-BG);
+    position: absolute;
+    right: 2rem;
+    bottom: 0rem;
+    border-radius: 10px;
+  }

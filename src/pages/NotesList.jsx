@@ -1,18 +1,27 @@
 import AddNote from '../components/AddNote'
 import Note from '../components/Note'
+import { useAuth } from '../contexts/AuthContext'
 import { useNote } from '../contexts/NoteContext'
+import empty from "../assets/images/no_results.png"
 
 export default function NotesList() {
   const {notes} = useNote()
+  const {loggedIn} = useAuth()
   return (
     <div>
       <AddNote/>
+      {loggedIn ? 
       <div className='notes-list'>
-        {notes.length === 0 ? <h3 className='empty-list-text'>Hmmm! No notes here.</h3> : notes.map(note => (
-          <Note note = {note}/>
+        {notes.length === 0 ? <h4 className='empty-list-text'>Notes you add appear here..</h4> : notes.map(note => (
+          <Note note = {note} key={note._id}/>
         ))}
-      </div>
+      </div> 
+       : <div className='empty-page home'>
+        <img src={empty}/>
+        <h3>Login to view your notes!</h3>
+      </div>}
     </div>
     
   )
 }
+ 

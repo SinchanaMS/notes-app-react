@@ -3,12 +3,13 @@
 @import url("https://clay-ui.netlify.app/stylesheets/index.css");
 
 :root {
-  --BODY-BG-COLOR: #f3eee7;
+  --BODY-BG-COLOR: #e3dace;
   --NOTE-BG-COLOR: #d6c1a6;
   --NEW-NOTE-BG-COLOR: #98b2a9;
   --NEW-NOTE-CTA-BG: #a7d2c4;
   --AUTH-CARD-BG-COLOR:#e7e0d2;
   --AUTH-CTA-BG:#767065;
+  --COLOR-PICKER-BG: #f3ebe4;
 }
 
 body {
@@ -20,7 +21,7 @@ body {
   align-items: center;
   width: 100vw;
   margin: auto;
-  padding: 10px;
+  padding: 10px 2rem;
 }
 
 .nav-links {
@@ -29,6 +30,12 @@ body {
   gap: 1rem;
   font-weight: 600;
   margin: 1rem auto;
+}
+
+.user-pages, .auth-opts{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .container {
@@ -50,6 +57,7 @@ body {
 
 .new .note-footer {
   align-self: flex-end;
+  gap: 1rem;
 }
 
 .save-note {
@@ -63,12 +71,11 @@ body {
 
 .notes-list {
   display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); 
 }
 
 .empty-list-text {
-  margin: 15px;
+  margin: 1rem;
 }
 
 .note-title {
@@ -81,6 +88,7 @@ body {
   justify-content: space-between;
   padding: 10px;
   margin: 10px;
+  height: fit-content;
   text-align: left;
   background-color: var(--NOTE-BG-COLOR);
   border: none;
@@ -94,7 +102,35 @@ body {
   padding: 10px 0px;
 }
 
-.delete-note {
+.note-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.note-actions button{
   border: none;
   background: none;
+}
+
+.empty-page{
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 30rem;
+  width: 20rem;
+  text-align: center;
+  color: var(--DEFAULT-GREY)
+}
+
+.home.empty-page{
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.note-header{
+  display: flex;
+  justify-content: space-between;
 }

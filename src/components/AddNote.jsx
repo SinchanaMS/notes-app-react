@@ -1,11 +1,21 @@
 import axios from 'axios'
+import { useAuth } from '../contexts/AuthContext'
 import { useNote } from '../contexts/NoteContext'
+import { ColorPicker } from './ColorPicker'
 import Editor from './Editor'
+import Toast from './Toast'
 
 export default function AddNote() {
   const {note, setNote, setNotes} = useNote()
+  const {loggedIn} = useAuth()
+
+  const handleColor = (note, color) => {
+    console.log(note)
+    setNote({...note, bgColor: (note.bgColor = color)})
+  }
 
   const addToNotesList = async (note) => {
+    if (loggedIn){
     try {
       const response = await axios.post('/api/notes', { note }, {
         headers: {
@@ -20,7 +30,10 @@ export default function AddNote() {
     } catch (error) {
       console.log(error)
     }
+  } else {
+    Toast({type: "error", message:"Please login"})
   }
+}
 
   return (
     <div className="note new">
@@ -31,6 +44,7 @@ export default function AddNote() {
         <Editor/>
       </div>
       <div className='note-footer'>
+        <ColorPicker size={25} changeColor={(color) => handleColor(note, color)}/>
         <button className='save-note' onClick={() => addToNotesList(note)}>Add Note</button>
       </div>
     </div>
