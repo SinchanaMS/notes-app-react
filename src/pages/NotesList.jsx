@@ -20,8 +20,7 @@ export default function NotesList() {
         <img src={empty}/>
         <h3>Login to view your notes!</h3>
       </div>}
-    </div>
-    
+    </div>   
   )
 }
  

@@ -3,13 +3,13 @@
 @import url("https://clay-ui.netlify.app/stylesheets/index.css");
 
 :root {
-  --BODY-BG-COLOR: #e3dace;
-  --NOTE-BG-COLOR: #d6c1a6;
-  --NEW-NOTE-BG-COLOR: #98b2a9;
-  --NEW-NOTE-CTA-BG: #a7d2c4;
-  --AUTH-CARD-BG-COLOR:#e7e0d2;
-  --AUTH-CTA-BG:#767065;
-  --COLOR-PICKER-BG: #f3ebe4;
+  --BODY-BG-COLOR: #ffffff;
+  --NOTE-BG-COLOR: #d6d8cb;
+  --NEW-NOTE-BG-COLOR: #f5f3e9;
+  --NEW-NOTE-CTA-BG: #49655e;
+  --AUTH-CARD-BG-COLOR: #f1eeeb;
+  --AUTH-CTA-BG: #49655e;
+  --COLOR-PICKER-BG: #eaded2;
 }
 
 body {
@@ -30,9 +30,11 @@ body {
   gap: 1rem;
   font-weight: 600;
   margin: 1rem auto;
+  font-size: large;
 }
 
-.user-pages, .auth-opts{
+.user-pages,
+.auth-opts {
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -46,11 +48,16 @@ body {
 
 .note.new {
   background-color: var(--NEW-NOTE-BG-COLOR);
+  border-radius: 0px;
+  padding: 1rem;
+  margin: auto;
+  box-shadow: 0px 2px 4px var(--SHADOW-GREY), 0px 4px 8px var(--SHADOW-GREY);
 }
 
 .new .note-title {
   width: 100%;
   background-color: var(--NEW-NOTE-BG-COLOR);
+  font-size: larger;
   outline: none;
   border: none;
 }
@@ -61,17 +68,18 @@ body {
 }
 
 .save-note {
-  padding: 5px 10px;
+  padding: 6px;
+  height: 30px;
+  width: 30px;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: var(--NEW-NOTE-CTA-BG)
+  border-radius: 50%;
+  background-color: var(--NEW-NOTE-CTA-BG);
+  color: var(--PURE-WHITE);
 }
 
 .notes-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 }
 
 .empty-list-text {
@@ -87,19 +95,20 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 5px;
   height: fit-content;
   text-align: left;
-  background-color: var(--NOTE-BG-COLOR);
+  background: var(--NOTE-BG-COLOR);
   border: none;
-  border-radius: 9px;
+  border-radius: 3px;
+  box-shadow: 0px 2px 4px var(--SHADOW-GREY), 0px 4px 8px var(--SHADOW-GREY);
 }
 
 .note-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0px;
+  padding: 8px 0px;
 }
 
 .note-actions {
@@ -108,12 +117,12 @@ body {
   gap: 9px;
 }
 
-.note-actions button{
+.note-actions button {
   border: none;
   background: none;
 }
 
-.empty-page{
+.empty-page {
   position: fixed;
   top: 65%;
   left: 50%;
@@ -124,13 +133,20 @@ body {
   color: var(--DEFAULT-GREY)
 }
 
-.home.empty-page{
+.home.empty-page {
   top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.note-header{
+.note-header {
   display: flex;
   justify-content: space-between;
+}
+
+.note-footer-icon {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
 }

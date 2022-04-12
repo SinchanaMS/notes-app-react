@@ -44,8 +44,8 @@ export default function AddNote() {
         <Editor/>
       </div>
       <div className='note-footer'>
-        <ColorPicker size={25} changeColor={(color) => handleColor(note, color)}/>
-        <button className='save-note' onClick={() => addToNotesList(note)}>Add Note</button>
+        <ColorPicker changeColor={(color) => handleColor(note, color)}/>
+        <button className='save-note' onClick={() => addToNotesList(note)}><span class="material-icons md-18 material-icons-outlined">add</span></button>
       </div>
     </div>
   )

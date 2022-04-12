@@ -1,21 +1,22 @@
 import { useState } from "react";
-import {MdOutlineColorLens} from "react-icons/md"
 import "../styles/colorpicker.css"
+import ColorPalette from "./ColorPalette";
+
 
 export const ColorPicker = ({changeColor}) => {
     const [showColor, setShowColor] = useState(false)
     const colorPalette = [
-        "#E3BEC6",
-        "#E193FD",
-        "#F6D7A7",
-        "#AF9EB5",
-        "#E7ED9B",
-        "#9DB5B2"
+        "#c1b1d0",
+        "#b4cddb",
+        "#bbcdb3",
+        "#cccbda",
+        "#cda5b8",
+        "#d7bfc2"
     ]
 
     return (
         <div className="color-picker">
-            <MdOutlineColorLens size={25} className="note-footer-icon" onClick={()=>setShowColor(prev => !prev)}/>
+           <button className="note-footer-icon" onClick={()=>setShowColor(prev => !prev)}><ColorPalette className="note-footer-icon"/></button>
 
             {showColor && (
                 <div className="color-wrapper">

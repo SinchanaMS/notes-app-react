@@ -8,7 +8,7 @@ const NoteProvider = ({children}) => {
     const [note, setNote] = useState({
         title: "",
         body: "",
-        bgColor: "#d6c1a6",
+        bgColor: "#d6d8cb",
         date: new Date().toLocaleString()
     })
     const [notes, setNotes] = useState([])

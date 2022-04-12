@@ -39,6 +39,7 @@
 
 .signup-btn:hover{
     cursor: pointer;
+    background: var(--AUTH-CTA-BG)
 }
 
 .existing-user{
