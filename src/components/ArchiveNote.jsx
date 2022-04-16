@@ -4,7 +4,7 @@ import Toast from "./Toast"
 
 export default function ({note}) {
 
-  const {trash, setTrash, setNotes, setArchives} = useNote()
+const {setNotesData} = useNote()
 
 const restoreFromArchive = async (note) =>{
   try {
@@ -14,12 +14,12 @@ const restoreFromArchive = async (note) =>{
       }
     })
     if (response.status === 200){
-      setNotes(response.data.notes)
-      setArchives(response.data.archives)
+      setNotesData(data => ({...data, archives: response.data.archives, notes: response.data.notes}))
       Toast({type: "success", message: "Note restored from archives"})
     }
   } catch (error) {
     console.log(error)
+    Toast({type: "error", message:"Oops! Some error occurred."})
   }
 }
 
@@ -31,12 +31,12 @@ const deleteFromArchive = async (note) => {
       }
     })
     if (response.status === 200){
-      setArchives(response.data.archives)
-      setTrash([...trash, note])
+      setNotesData(data => ({...data, archives: response.data.archives, trash: [...data.trash, note]}))
       Toast({type: "success", message: "Note deleted"})
     }
   } catch (error) {
     console.log(error)
+    Toast({type: "error", message:"Oops! Some error occurred."})
   }
 }
 

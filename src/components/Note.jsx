@@ -4,7 +4,7 @@ import Toast from "./Toast"
 
 export default function ({note}) {
 
-  const {trash, setTrash, setNotes,setArchives} = useNote()
+  const {setNotesData} = useNote()
   const finalTagsList = [...new Set(note.tags)]
 
   const deleteNote = async (note) => {
@@ -15,8 +15,7 @@ export default function ({note}) {
       }
     })
     if (response.status === 200) {
-      setNotes(response.data.notes)
-      setTrash([...trash, note])
+      setNotesData(data => ({...data, trash: [...data.trash, note], notes: response.data.notes}))
       Toast({type: "success", message: "Note deleted"})
     }
   } catch(error){
@@ -33,8 +32,7 @@ const archiveNote = async (note) =>{
       }
     })
     if (response.status === 201){
-      setNotes(response.data.notes)
-      setArchives(response.data.archives)
+      setNotesData(data => ({...data, archives: response.data.archives, notes: response.data.notes}))
       Toast({type: "success", message: "Note archived"})
     }
   } catch (error) {

@@ -5,14 +5,14 @@ import { useNote } from '../contexts/NoteContext'
 import empty from "../assets/images/no_results.png"
 
 export default function NotesList() {
-  const {notes} = useNote()
+  const {notesData} = useNote()
   const {loggedIn} = useAuth()
   return (
     <div>
       <AddNote/>
       {loggedIn ? 
       <div className='notes-list'>
-        {notes.length === 0 ? <h4 className='empty-list-text'>Notes you add appear here..</h4> : notes.map(note => (
+        {notesData.notes.length === 0 ? <h4 className='empty-list-text'>Notes you add appear here..</h4> : notesData.notes.map(note => (
           <Note note = {note} key={note._id}/>
         ))}
       </div> 
