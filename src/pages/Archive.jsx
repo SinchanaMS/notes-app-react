@@ -8,7 +8,7 @@ export default function Archive() {
 
   return (
     <div className='notes-list'>
-      {notesData.archives.length !== 0 ?  notesData.archives.map(archivedNote => (
+      {notesData?.archives.length !== 0 ?  notesData.archives.map(archivedNote => (
       <ArchiveNote note={archivedNote} key={archivedNote._id}/>
       )) : 
       <div className='empty-page'>

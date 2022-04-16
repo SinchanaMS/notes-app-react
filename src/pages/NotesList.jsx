@@ -12,7 +12,7 @@ export default function NotesList() {
       <AddNote/>
       {loggedIn ? 
       <div className='notes-list'>
-        {notesData.notes.length === 0 ? <h4 className='empty-list-text'>Notes you add appear here..</h4> : notesData.notes.map(note => (
+        {notesData?.notes.length === 0 ? <h4 className='empty-list-text'>Notes you add appear here..</h4> : notesData.notes.map(note => (
           <Note note = {note} key={note._id}/>
         ))}
       </div> 

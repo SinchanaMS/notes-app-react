@@ -45,6 +45,7 @@ export default function AddNote() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    addToNotesList(note)
     setNote(initialNote)
   }
 
@@ -75,7 +76,7 @@ export default function AddNote() {
           </div>
           <div className='footer-ctas'>
             <ColorPicker changeColor={(color) => handleColor(note, color)}/>
-            <button className='save-note' type="submit" onClick={()=>addToNotesList(note)}><span class="material-icons md-18 material-icons-outlined">add</span></button>
+            <button className='save-note' type="submit"><span class="material-icons md-18 material-icons-outlined">add</span></button>
           </div>
         </div>
       </form>

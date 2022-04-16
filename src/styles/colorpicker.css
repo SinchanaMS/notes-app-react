@@ -18,7 +18,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: 0rem;
+    right: 0;
     bottom: 3px;
     border-radius: 10px;
     transition: right 500ms ease-out;

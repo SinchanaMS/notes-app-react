@@ -9,7 +9,7 @@ export default function Trash() {
     
     return (
         <div className='notes-list'>
-            {notesData.trash.length !== 0 ? notesData.trash.map(item => (
+            {notesData?.trash.length !== 0 ? notesData.trash.map(item => (
             <TrashNote note = {item}/>
             )) : (
             <div className='empty-page'>
