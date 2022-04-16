@@ -16,10 +16,8 @@ export const ColorPicker = ({changeColor}) => {
 
     return (
         <div className="color-picker">
-           <button className="note-footer-icon" onClick={()=>setShowColor(prev => !prev)}><ColorPalette className="note-footer-icon"/></button>
-
-            {showColor && (
-                <div className="color-wrapper">
+           <div className="note-footer-icon" onClick={()=>setShowColor(prev => !prev)}><ColorPalette/></div>
+                <div className={showColor ? "color-wrapper active" : "color-wrapper"}>
                     {colorPalette.map((color) => {
                         return (
                             <div 
@@ -31,7 +29,6 @@ export const ColorPicker = ({changeColor}) => {
                         )
                     })}
                 </div>
-            )}
         </div>
     )
 }

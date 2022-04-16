@@ -3,7 +3,7 @@
     height: 1.2rem;
     margin: 0.2rem;
     border-radius: 50%;
-    border: thin solid var(--DEFAULT-GREY);
+    border: none
   }
 
   .color-picker {
@@ -11,13 +11,21 @@
   }
   
   .color-wrapper {
+    visibility: hidden;
     width: 10rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: 2rem;
+    right: 0;
     bottom: 3px;
     border-radius: 10px;
+    transition: right 500ms ease-out;
+  }
+
+  .color-wrapper.active {
+    right: 2.5rem;
+    visibility: visible;
+    transition: right 500ms ease-out;
   }

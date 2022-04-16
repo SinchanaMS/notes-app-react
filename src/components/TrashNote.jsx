@@ -4,7 +4,7 @@ import Toast from "./Toast"
 
 export default function ({note}) {
 
-const {trash, setTrash,setNotes} = useNote()
+const {setNotesData} = useNote()
 
 const restoreFromTrash = async (note) =>{
   try {
@@ -14,15 +14,14 @@ const restoreFromTrash = async (note) =>{
       }
     })
     if (response.status === 201){
-      setNotes(response.data.notes)
-      setTrash(trash.filter(item => item._id !== note._id))
+      setNotesData(data => ({...data, trash: data.trash.filter(item => item._id !== note._id), notes: response.data.notes}))
       Toast({type: "success", message: "Note restored from trash"})
     }
   } catch (error) {
     console.log(error)
+    Toast({type: "error", message:"Oops! Some error occurred."})
   }
 }
-
 
   return (
     <div className='note' style={{ backgroundColor: note.bgColor }}>
@@ -31,7 +30,7 @@ const restoreFromTrash = async (note) =>{
       </div>
         <p className='note-body' dangerouslySetInnerHTML={{__html: note.body}}></p>
         <div className='note-footer'>
-          <p className="created-date">13/02/2022</p>
+          <p className="created-date">{new Date().toLocaleString()}</p>
           <div className="note-actions">
             <button className="archive-note" onClick={() => restoreFromTrash(note)}><span class="material-icons material-icons-outlined">restore</span></button>
           </div>

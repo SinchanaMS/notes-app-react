@@ -4,9 +4,10 @@ import Toast from "./Toast"
 
 export default function ({note}) {
 
-  const {setNote, trash, setTrash, notes, setNotes, archives, setArchives} = useNote()
+  const {setNotesData} = useNote()
+  const finalTagsList = [...new Set(note.tags)]
 
-  async function deleteNote(note){
+  const deleteNote = async (note) => {
     try{
     const response = await axios.delete(`/api/notes/${note._id}`, {
       headers: {
@@ -14,12 +15,12 @@ export default function ({note}) {
       }
     })
     if (response.status === 200) {
-      setNotes(response.data.notes)
-      setTrash([...trash, note])
+      setNotesData(data => ({...data, trash: [...data.trash, note], notes: response.data.notes}))
       Toast({type: "success", message: "Note deleted"})
     }
   } catch(error){
     console.log(error)
+    Toast({type: "error", message:"Oops! Some error occurred."})
   } 
 }
 
@@ -31,12 +32,12 @@ const archiveNote = async (note) =>{
       }
     })
     if (response.status === 201){
-      setNotes(response.data.notes)
-      setArchives(response.data.archives)
+      setNotesData(data => ({...data, archives: response.data.archives, notes: response.data.notes}))
       Toast({type: "success", message: "Note archived"})
     }
   } catch (error) {
     console.log(error)
+    Toast({type: "error", message:"Oops! Some error occurred."})
   }
 }
 
@@ -51,8 +52,15 @@ const archiveNote = async (note) =>{
           <div className="note-actions">
             <button className="archive-note" onClick={()=>archiveNote(note)}><span class="material-icons material-icons-outlined">archive</span></button>
             <button className="delete-note" onClick={() => deleteNote(note)}><span class="material-icons material-icons-outlined delete-icon">delete</span></button>
-          </div>
+          </div>         
         </div>
+        <div className="tags-list">
+          {finalTagsList.map(tag => (
+            <div className="tag-chip">
+            <p>{tag}</p>
+            </div>
+          ))}
+          </div>
     </div>
   )
 }

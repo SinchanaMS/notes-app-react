@@ -5,11 +5,11 @@ import TrashNote from "../components/TrashNote"
 
 export default function Trash() {
 
-    const { trash } = useNote()
+    const { notesData } = useNote()
     
     return (
-        <div>
-            {trash.length !== 0 ? trash.map(item => (
+        <div className='notes-list'>
+            {notesData?.trash.length !== 0 ? notesData.trash.map(item => (
             <TrashNote note = {item}/>
             )) : (
             <div className='empty-page'>
