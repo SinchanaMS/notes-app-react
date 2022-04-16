@@ -10,6 +10,8 @@
   --AUTH-CARD-BG-COLOR: #f1eeeb;
   --AUTH-CTA-BG: #49655e;
   --COLOR-PICKER-BG: #eaded2;
+  --ADD-TAG--CTA-BG:#d6d8cb;
+  --TAG-CHIP-BG: #e0e2d7;
 }
 
 body {
@@ -109,6 +111,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 8px 0px;
+  width: 100%;
 }
 
 .note-actions {
@@ -149,4 +152,64 @@ body {
   align-items: center;
   border: none;
   background: none;
+}
+
+.tags{
+  text-align: left;
+  background: var(--ADD-TAG--CTA-BG);
+  border: none;
+  border-radius: 4px;
+  padding: 4px 6px
+}
+
+.tags:focus{
+  outline: none
+}
+
+.footer-ctas{
+  display: flex;
+  gap: 1rem
+}
+
+.tag-chip{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 4px 6px;
+ border-radius: 12px;
+ gap: 5px;
+ background: var(--TAG-CHIP-BG)
+}
+
+.close-icon{
+  border: none;
+  background: none;
+}
+
+.tags-options{
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.tags-list{
+  display: flex;
+}
+
+.tags-list .tag-chip {
+  margin: 4px;
+}
+
+.add-tag{
+  background-color: var(--ADD-TAG--CTA-BG);
+  color: var(--AUTH-CTA-BG);
+  position: absolute;
+  left: 10.5rem;
+  top: 5px;
+  border: none;
+  padding: 1px 0px;
+}
+
+.add-tag:hover{
+  cursor: pointer;
 }

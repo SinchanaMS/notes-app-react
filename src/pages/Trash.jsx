@@ -8,7 +8,7 @@ export default function Trash() {
     const { trash } = useNote()
     
     return (
-        <div>
+        <div className='notes-list'>
             {trash.length !== 0 ? trash.map(item => (
             <TrashNote note = {item}/>
             )) : (

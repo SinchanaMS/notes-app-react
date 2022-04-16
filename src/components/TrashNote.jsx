@@ -31,7 +31,7 @@ const restoreFromTrash = async (note) =>{
       </div>
         <p className='note-body' dangerouslySetInnerHTML={{__html: note.body}}></p>
         <div className='note-footer'>
-          <p className="created-date">13/02/2022</p>
+          <p className="created-date">{new Date().toLocaleString()}</p>
           <div className="note-actions">
             <button className="archive-note" onClick={() => restoreFromTrash(note)}><span class="material-icons material-icons-outlined">restore</span></button>
           </div>
