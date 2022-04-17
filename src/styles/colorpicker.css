@@ -1,31 +1,30 @@
 .color {
-    width: 1.2rem;
-    height: 1.2rem;
-    margin: 0.2rem;
-    border-radius: 50%;
-    border: none
-  }
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0.2rem;
+  border-radius: 50%;
+  border: none
+}
 
-  .color-picker {
-    position: relative;
-  }
-  
-  .color-wrapper {
-    visibility: hidden;
-    width: 10rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    bottom: 3px;
-    border-radius: 10px;
-    transition: right 500ms ease-out;
-  }
+.color-picker {
+  position: relative;
+}
 
-  .color-wrapper.active {
-    right: 2.5rem;
-    visibility: visible;
-    transition: right 500ms ease-out;
-  }
+.color-wrapper {
+  visibility: hidden;
+  width: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  border-radius: 10px;
+  transition: right 500ms ease-out;
+}
+
+.color-wrapper.active {
+  right: 2.5rem;
+  visibility: visible;
+}

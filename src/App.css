@@ -10,7 +10,7 @@
   --AUTH-CARD-BG-COLOR: #f1eeeb;
   --AUTH-CTA-BG: #49655e;
   --COLOR-PICKER-BG: #eaded2;
-  --ADD-TAG--CTA-BG:#d6d8cb;
+  --ADD-TAG--CTA-BG: #d6d8cb;
   --TAG-CHIP-BG: #e0e2d7;
 }
 
@@ -20,6 +20,7 @@ body {
 
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100vw;
   margin: auto;
@@ -27,24 +28,19 @@ body {
 }
 
 .nav-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  font-weight: 600;
-  margin: 1rem auto;
-  font-size: large;
+  font-weight: 400;
+  font-size: 1.1rem;
 }
 
-.user-pages,
 .auth-opts {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .container {
-  max-width: 70%;
-  margin: auto;
+  max-width: 75%;
+  margin-left: 20rem;
   padding: 1rem;
 }
 
@@ -66,7 +62,6 @@ body {
 
 .new .note-footer {
   align-self: flex-end;
-  gap: 1rem;
 }
 
 .save-note {
@@ -81,11 +76,13 @@ body {
 
 .notes-list {
   display: grid;
+  margin: 1rem auto;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 }
 
 .empty-list-text {
-  margin: 1rem;
+  margin: 1rem auto;
+  text-align: center;
 }
 
 .note-title {
@@ -103,7 +100,7 @@ body {
   background: var(--NOTE-BG-COLOR);
   border: none;
   border-radius: 3px;
-  box-shadow: 0px 2px 4px var(--SHADOW-GREY), 0px 4px 8px var(--SHADOW-GREY);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.251);
 }
 
 .note-footer {
@@ -128,18 +125,12 @@ body {
 .empty-page {
   position: fixed;
   top: 65%;
-  left: 50%;
+  left: 60%;
   transform: translate(-50%, -50%);
   height: 30rem;
   width: 20rem;
   text-align: center;
   color: var(--DEFAULT-GREY)
-}
-
-.home.empty-page {
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .note-header {
@@ -154,7 +145,8 @@ body {
   background: none;
 }
 
-.tags{
+.tags,
+.priority {
   text-align: left;
   background: var(--ADD-TAG--CTA-BG);
   border: none;
@@ -162,45 +154,46 @@ body {
   padding: 4px 6px
 }
 
-.tags:focus{
+.tags:focus,
+.priority:focus {
   outline: none
 }
 
-.footer-ctas{
+.footer-ctas {
   display: flex;
   gap: 1rem
 }
 
-.tag-chip{
- display: flex;
- justify-content: center;
- align-items: center;
- padding: 4px 6px;
- border-radius: 12px;
- gap: 5px;
- background: var(--TAG-CHIP-BG)
+.tag-chip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 12px;
+  gap: 5px;
+  background: var(--TAG-CHIP-BG)
 }
 
-.close-icon{
+.close-icon {
   border: none;
   background: none;
 }
 
-.tags-options{
+.tags-options {
   display: flex;
   gap: 10px;
   position: relative;
 }
 
-.tags-list{
+.tags-list {
   display: flex;
 }
 
 .tags-list .tag-chip {
-  margin: 4px;
+  margin-right: 4px;
 }
 
-.add-tag{
+.add-tag {
   background-color: var(--ADD-TAG--CTA-BG);
   color: var(--AUTH-CTA-BG);
   position: absolute;
@@ -210,6 +203,87 @@ body {
   padding: 1px 0px;
 }
 
-.add-tag:hover{
+.add-tag:hover {
   cursor: pointer;
+}
+
+.sort-and-filter {
+  position: absolute;
+  right: 15rem;
+  top: 3.5rem;
+  width: 11rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.editor-container {
+  position: absolute;
+  height: 40vh;
+  top: 26%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vw;
+  z-index: 1;
+}
+
+.create-note {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  height: 60px;
+  width: 60px;
+  border: none;
+  border-radius: 12px;
+  background: var(--NEW-NOTE-CTA-BG);
+  color: var(--PURE-WHITE)
+}
+
+.create-note.hide {
+  display: none;
+}
+
+.page-title {
+  margin: 0
+}
+
+.sidebar {
+  position: fixed;
+  margin: 2rem 0;
+  top: 4.7rem;
+  width: 18rem;
+  height: 80vh;
+  overflow-y: auto;
+  font-size: large;
+  background: var(--NEW-NOTE-BG-COLOR);
+  padding: 1rem;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.editor-bg {
+  position: absolute;
+  height: 81vh;
+  width: 76vw;
+  background: #feffff;
+  z-index: 9999;
+}
+
+.labels {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.label {
+  color: var(--AUTH-CTA-BG);
 }

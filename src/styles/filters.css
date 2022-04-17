@@ -1,0 +1,57 @@
+.filter-by {
+    margin-top: 1rem;
+    position: relative;
+}
+
+.filter-title {
+    padding: 5px 10px;
+    width: 10rem;
+}
+
+.filter-title:hover {
+    cursor: pointer;
+    background-color: #f0ecdd;
+    border-radius: 4px;
+}
+
+.filter-options {
+    display: none;
+    padding: 5px 10px;
+    background: var(--NEW-NOTE-BG-COLOR);
+}
+
+.filter-options.active {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter {
+    color: var(--DARK-YELLOW)
+}
+
+.filter:hover {
+    background-color: #f0ecdd;
+    cursor: pointer;
+}
+
+.other-tags {
+    display: none;
+}
+
+.other-tags.active {
+    display: block;
+}
+
+.other-tags label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}

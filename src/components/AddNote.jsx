@@ -5,9 +5,9 @@ import { ColorPicker } from './ColorPicker'
 import Editor from './Editor'
 import Toast from './Toast'
 
-export default function AddNote() {
+export default function AddNote({setShowEditor}) {
 
-  const {note, setNote, setNotesData, tag, setTag} = useNote()
+  const {note, setNote, setNotesData, setTag} = useNote()
   const {loggedIn} = useAuth()
   const finalTagsList = [...new Set(note.tags)]
   const initialNote = {
@@ -47,12 +47,14 @@ export default function AddNote() {
     e.preventDefault();
     addToNotesList(note)
     setNote(initialNote)
+    setShowEditor(false)
   }
 
   const addTag = (tag) => {
     tag.length &&
     setNote(note => ({...note, tags: [...note.tags, tag]}))
-    setTag("")
+    setNotesData(data => ({...data, tagsList: [...data.tagsList, tag]}))
+    setTag(tag)
   }
 
   return (
@@ -66,18 +68,39 @@ export default function AddNote() {
         </div>
         <div className='note-footer'>
           <div className="tags-options">
-            <input type="text" className="tags" placeholder='Add Tags' value={tag} onChange={(e) => setTag(e.target.value)}/>
-            <span class="material-icons md-18 material-icons-outlined add-tag"  onClick={() => addTag(tag)}>add</span>
-            {finalTagsList.map(tag => (
-            <div className='tag-chip'>
-              <p>{tag}</p>
-            </div>
-          ))}
+
+            <label>Labels:</label>
+            <select className='tags dropdown-tags' onClick={(e)=>addTag(e.target.value)}>
+              <option value="" disabled selected>Select Labels</option>
+              <option value="Work">Work</option>
+              <option value="Personal">Personal</option>
+              <option value="Creativity">Creativity</option>
+              <option value="Shopping List">Shopping List</option>
+              <option value="To-do">To-do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+
+            <label>Priority:</label>
+            <select className='priority' onClick={(e)=>setNote({...note, priority: e.target.value})}>
+              <option value="" disabled selected>Select Priority</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+            
           </div>
           <div className='footer-ctas'>
             <ColorPicker changeColor={(color) => handleColor(note, color)}/>
             <button className='save-note' type="submit"><span class="material-icons md-18 material-icons-outlined">add</span></button>
           </div>
+        </div>
+        <div className='tags-list'>
+          {finalTagsList.map(tag => (
+          <div className='tag-chip'>
+            <p>{tag}</p>
+          </div>
+          ))}
         </div>
       </form>
     </div>
