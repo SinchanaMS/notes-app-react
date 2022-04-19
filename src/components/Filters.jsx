@@ -11,9 +11,11 @@ export default function Filters() {
     return (
         <div className='filter-by'>
             <p className="filter-title" onClick={() =>setShowFilters(!showFilters)}>Filter:</p>
+            
             <div className={showFilters ? 'filter-options shadow active' : 'filter-options shadow'}>
+                <button className="clear-filter" onClick={(e) => filterDispatch({type: "CLEAR"})}>Clear Filters</button>
                 <div className="filter-option">
-                    <p>labels</p>
+                    <p>Labels</p>
                     <label className="label filter">
                         <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "Work")}  value="Work" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>Work
                     </label>
@@ -36,7 +38,7 @@ export default function Filters() {
                         <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "Completed")} value="Completed" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>Completed
                     </label>
                 </div>
-                
+
                 <div className="filter-option">
                     <p>Priority</p>
                     <label className="label filter">

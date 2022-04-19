@@ -1,4 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useReducer } from "react";
+import { noteReducer } from "../reducers/noteReducer";
+import { addToNotesList, editNote, deleteNote, archiveNote, restoreFromArchive, deleteFromArchive, addLabels, restoreFromTrash } from "../helpers/NoteFunctions";
 
 const NoteContext = createContext()
 
@@ -24,14 +26,14 @@ const NoteProvider = ({children}) => {
     }
 
     const allLabelsList = ["Work", "Personal", "Creativity", "Shopping List", "To-do", "In Progress", "Completed"]
-    
+
     const [note, setNote] = useState(initialNote)
-    const [tag, setTag] = useState("")
-    const [notesData, setNotesData] = useState(initialNotesData)
+    const [label, setLabel] = useState("")
     const [showEditor, setShowEditor] = useState(false)
+    const [notesData, noteDispatch] = useReducer(noteReducer, initialNotesData)
 
     return (
-        <NoteContext.Provider value={{note, setNote, notesData, setNotesData, tag, setTag, showEditor, setShowEditor, allLabelsList}}>
+        <NoteContext.Provider value={{note, setNote, notesData, noteDispatch, label, setLabel, showEditor, setShowEditor, allLabelsList, addToNotesList, editNote, deleteNote, archiveNote, restoreFromArchive, deleteFromArchive, addLabels, restoreFromTrash}}>
             {children}
         </NoteContext.Provider>
     )

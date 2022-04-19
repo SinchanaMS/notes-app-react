@@ -16,13 +16,13 @@ export default function NotesList() {
       <button className={showEditor ? 'create-note hide' : 'create-note'} type="submit" onClick={()=> setShowEditor(!showEditor)}>
         <span class="material-icons md-18 material-icons-outlined ">add</span>
       </button>
-      {showEditor && <>
+      {showEditor && 
         <div className='editor-container'>
-          <AddNote setShowEditor={setShowEditor}/>
+          <AddNote setShowEditor={setShowEditor} key={showEditor}/>
         </div>
-        </>}
+      }
 
-      {notes.length !== 0 &&
+      {notes.length!==0 &&
       <div className='sort-and-filter'>
         <SortBy/>
         <Filters/>
@@ -42,7 +42,8 @@ export default function NotesList() {
         : <div className='empty-page home'>
             <img src={empty}/>
             <h3>Login to view your notes!</h3>
-          </div>}
+          </div>
+          }
     </div>   
   )
 }

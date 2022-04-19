@@ -10,16 +10,16 @@ import { BrowserRouter } from "react-router-dom";
 makeServer();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
+<React.StrictMode>
+  <BrowserRouter>
     <FilterProvider>
       <AuthProvider>
         <NoteProvider>          
-            <App />
+          <App />
         </NoteProvider>
       </AuthProvider>
-      </FilterProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+    </FilterProvider>
+  </BrowserRouter>
+</React.StrictMode>,
   document.getElementById("root")
 );
