@@ -9,9 +9,10 @@ const NoteProvider = ({children}) => {
     const initialNote = {
         title: "",
         body: "",
-        bgColor: "#d6d8cb",
-        tags: [],
-        priority: "Low",
+        bgColor: "var(--NOTE-BG-COLOR)",
+        labels: [],
+        priority: "3",
+        isEdited: false,
         date: new Date().toLocaleString()
     }
 
@@ -19,16 +20,18 @@ const NoteProvider = ({children}) => {
         notes: [],
         trash: [],
         archives: [],
-        pinned: [],
-        tagsList: []
+        labelsList: []
     }
 
+    const allLabelsList = ["Work", "Personal", "Creativity", "Shopping List", "To-do", "In Progress", "Completed"]
+    
     const [note, setNote] = useState(initialNote)
     const [tag, setTag] = useState("")
     const [notesData, setNotesData] = useState(initialNotesData)
+    const [showEditor, setShowEditor] = useState(false)
 
     return (
-        <NoteContext.Provider value={{note, setNote, notesData, setNotesData, tag, setTag}}>
+        <NoteContext.Provider value={{note, setNote, notesData, setNotesData, tag, setTag, showEditor, setShowEditor, allLabelsList}}>
             {children}
         </NoteContext.Provider>
     )

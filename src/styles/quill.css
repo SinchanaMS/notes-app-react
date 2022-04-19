@@ -22,9 +22,7 @@
 
 .ql-toolbar.ql-snow {
 	display: flex;
-	overflow-x: auto;
 	padding: 0;
-	overflow-y: hidden;
 	border: none;
 	padding: 10px;
 	border-radius: 0px;

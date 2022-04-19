@@ -8,9 +8,9 @@
     width: 10rem;
 }
 
-.filter-title:hover {
+.filter-title:hover, .filter:hover {
     cursor: pointer;
-    background-color: #f0ecdd;
+    background-color: var(--HOVER-BG);
     border-radius: 4px;
 }
 
@@ -27,31 +27,18 @@
 }
 
 .filter {
-    color: var(--DARK-YELLOW)
+    color: var(--DARK-YELLOW);
+    padding: 0px 5px;
 }
 
-.filter:hover {
-    background-color: #f0ecdd;
-    cursor: pointer;
+.filter-option{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
 }
 
-.other-tags {
-    display: none;
-}
-
-.other-tags.active {
-    display: block;
-}
-
-.other-tags label {
+.label{
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.custom-tags {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: 10px
 }

@@ -8,9 +8,9 @@
     padding:5px 10px;
     border:none
 }
-.sort-title:hover{
+.sort-title:hover, .sort:hover{
     cursor: pointer;
-    background-color: #f0ecdd;;
+    background-color: var(--HOVER-BG);
     border-radius: 4px;
     border:none
 }
@@ -28,10 +28,6 @@
 }
 
 .sort{
-    color: var(--DARK-YELLOW)
-}
-
-.sort:hover{
-    background-color: #f0ecdd;;
-    cursor: pointer;
+    color: var(--DARK-YELLOW);
+    padding:5px;
 }

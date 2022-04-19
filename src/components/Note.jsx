@@ -4,8 +4,8 @@ import Toast from "./Toast"
 
 export default function ({note}) {
 
-  const {setNotesData} = useNote()
-  const finalTagsList = [...new Set(note.tags)]
+  const {setNote, setNotesData, showEditor, setShowEditor} = useNote()
+  const finalLabelsList = [...new Set(note.labels)]
 
   const deleteNote = async (note) => {
     try{
@@ -41,11 +41,25 @@ export default function ({note}) {
     }
   }
 
+  const editHandler = (note) =>{
+    setNote({...note, isEdited: (note.isEdited = true)})
+    setShowEditor(true)
+    setNote(note)
+  }
+  
+  console.log(showEditor)
   return (
     <div className='note' style={{ backgroundColor: note.bgColor }}>
       <div className="note-header">
         <p className='note-title'>{note.title}</p>
-        <p>{note.priority}</p>
+        <div className="note-header-options">
+        <p className="priority-label p-sm">{note.priority === "1" ? "High" : note.priority === "2" ? "Medium" : note.priority === "3" ? "Low" : "" }</p>
+        <span class="material-icons material-icons-outlined md-18 edit-icon" onClick={()=>editHandler(note)}>
+          edit
+        </span>
+        
+        </div>
+        
       </div>
       <p className='note-body' dangerouslySetInnerHTML={{__html: note.body}}></p>
       <div className='note-footer'>
@@ -55,13 +69,13 @@ export default function ({note}) {
           <button className="delete-note" onClick={() => deleteNote(note)}><span class="material-icons material-icons-outlined delete-icon">delete</span></button>
         </div>         
       </div>
-      <div className="tags-list">
-        {finalTagsList.map(tag => (
-        <div className="tag-chip">
-          <p className="p-sm">{tag}</p>
+      <div className="labels-list">
+        {finalLabelsList.map(label => (
+        <div className="label-chip">
+          <p className="p-sm">{label}</p>
         </div>
-        ))}
-      </div>
+        ))}        
+      </div>     
     </div>
   )
 }

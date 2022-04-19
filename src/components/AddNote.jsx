@@ -1,22 +1,21 @@
 import axios from 'axios'
-import { useAuth } from '../contexts/AuthContext'
-import { useNote } from '../contexts/NoteContext'
-import { ColorPicker } from './ColorPicker'
-import Editor from './Editor'
-import Toast from './Toast'
+import { useAuth, useNote } from '../contexts/contexts'
+import {Toast, Editor, ColorPicker } from './components'
 
 export default function AddNote({setShowEditor}) {
 
-  const {note, setNote, setNotesData, setTag} = useNote()
+  const {note, setNote, setNotesData, setlabel, allLabelsList} = useNote()
   const {loggedIn} = useAuth()
-  const finalTagsList = [...new Set(note.tags)]
+  const finalLabelsList = [...new Set(note.labels)]
   const initialNote = {
     title: "",
     body: "",
-    bgColor: "#d6d8cb",
-    tags: [],
+    bgColor: "var(--NOTE-BG-COLOR)",
+    labels: [],
+    priority: "3",
+    isEdited: false,
     date: new Date().toLocaleString()
-  }
+}
 
   const handleColor = (note, color) => {
     setNote({...note, bgColor: (note.bgColor = color)})
@@ -43,18 +42,40 @@ export default function AddNote({setShowEditor}) {
     }
   }
 
+  const editNote = async (note) => {
+    if (loggedIn) {
+      try {
+        const response = await axios.post (`/api/notes/${note._id}`, {note} , {
+          headers: {
+            authorization: localStorage.getItem("userToken")
+          }
+        })
+        if (response.status === 201){
+          setNotesData(data => ({...data, notes: response.data.notes}))
+
+        }
+      } catch (error) {
+        Toast({type: "error", message:"Oops! Some error occurred."})
+        console.log(error)
+      }
+    } else {
+      Toast({type: "error", message:"Please login"})
+  }
+  console.log(notesData.notes)
+}
+
   const handleSubmit = e => {
     e.preventDefault();
-    addToNotesList(note)
+    note.isEdited ? editNote(note) : addToNotesList(note)
     setNote(initialNote)
     setShowEditor(false)
   }
 
-  const addTag = (tag) => {
-    tag.length &&
-    setNote(note => ({...note, tags: [...note.tags, tag]}))
-    setNotesData(data => ({...data, tagsList: [...data.tagsList, tag]}))
-    setTag(tag)
+  const addlabel = (label) => {
+    label.length &&
+    setNote(note => ({...note, labels: [...note.labels, label]}))
+    setNotesData(data => ({...data, labelsList: [...data.labelsList, label]}))
+    setlabel(label)
   }
 
   return (
@@ -67,38 +88,34 @@ export default function AddNote({setShowEditor}) {
           <Editor/>
         </div>
         <div className='note-footer'>
-          <div className="tags-options">
+          <div className="labels-options">
 
-            <label>Labels:</label>
-            <select className='tags dropdown-tags' onClick={(e)=>addTag(e.target.value)}>
+            <select className='dropdown-labels' onClick={(e)=>addlabel(e.target.value)}>
               <option value="" disabled selected>Select Labels</option>
-              <option value="Work">Work</option>
-              <option value="Personal">Personal</option>
-              <option value="Creativity">Creativity</option>
-              <option value="Shopping List">Shopping List</option>
-              <option value="To-do">To-do</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
+              {allLabelsList.map(label => (
+                <option value={label}>{label}</option>
+              ))}
             </select>
 
-            <label>Priority:</label>
             <select className='priority' onClick={(e)=>setNote({...note, priority: e.target.value})}>
               <option value="" disabled selected>Select Priority</option>
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
+              <option value={1}>High</option>
+              <option value={2}>Medium</option>
+              <option value={3}>Low</option>
             </select>
             
           </div>
           <div className='footer-ctas'>
             <ColorPicker changeColor={(color) => handleColor(note, color)}/>
-            <button className='save-note' type="submit"><span class="material-icons md-18 material-icons-outlined">add</span></button>
+            <button className='save-note' type="submit">
+              <span class="material-icons md-18 material-icons-outlined">add</span>
+            </button>
           </div>
         </div>
-        <div className='tags-list'>
-          {finalTagsList.map(tag => (
-          <div className='tag-chip'>
-            <p>{tag}</p>
+        <div className='labels-list'>
+          {finalLabelsList.map(label => (
+          <div className='label-chip'>
+            <p>{label}</p>
           </div>
           ))}
         </div>
