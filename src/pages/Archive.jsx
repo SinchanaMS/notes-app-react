@@ -1,5 +1,5 @@
 import { useNote } from '../contexts/NoteContext'
-import empty from "../assets/images/no_results.png"
+import empty from "../assets/images/no_results2.svg"
 import ArchiveNote from '../components/ArchiveNote'
 
 export default function Archive() {

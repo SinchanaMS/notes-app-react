@@ -47,5 +47,6 @@
 .clear-filter{
     border: none;
     background: none;
-    text-align: right;
+    text-align: left;
+    color: var(--DARK-YELLOW);
 }

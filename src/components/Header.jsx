@@ -15,7 +15,7 @@ export default function Header() {
   <div className='header shadow'>
     <div className='brand-logo'>
       <img src={mainLogo} />
-      <p className='p-lg'> Jotter </p>
+      <NavLink to="/" className="p-lg"> Jotter </NavLink>
     </div>
     <nav className="nav-links">
       {loggedIn ? 
@@ -26,10 +26,12 @@ export default function Header() {
       </div>}
     </nav>
 
-      
+    {loggedIn &&  
     <div className="sidebar shadow">
       <nav className="side-nav">
         <NavLink to="/"> Home </NavLink>
+        <NavLink to="/archive"> Archives </NavLink>
+        <NavLink to="/trash"> Trash </NavLink>
         <NavLink to="/" > Labels
           {allLabelsList.map(label => (
             label.length!==0 &&
@@ -39,10 +41,9 @@ export default function Header() {
             </div>
           ))}
         </NavLink>
-        <NavLink to="/archive"> Archives </NavLink>
-        <NavLink to="/trash"> Trash </NavLink>
       </nav>
     </div>
+    }
   </div>
   )
 }

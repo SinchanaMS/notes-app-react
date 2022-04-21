@@ -1,7 +1,8 @@
 import { useAuth, useNote, useFilter } from '../contexts/contexts'
 import {SortBy, Filters, Note, AddNote} from '../components/components'
 import { getNotes } from '../helpers/FilterCompose'
-import empty from "../assets/images/no_results.png"
+import empty from "../assets/images/no_results2.svg"
+import notesImg from "../assets/images/notes1.svg"
 
 export default function NotesList() {
   
@@ -32,7 +33,7 @@ export default function NotesList() {
         <div className='notes-list'>
           {finalNotesList.length === 0 ? 
           <div className='empty-page home'>
-            <img src={empty}/>
+            <img src={notesImg}/>
             <h3>You haven't added any notes! Create one now!</h3>
           </div> : 
           finalNotesList.map(note => (

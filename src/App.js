@@ -1,6 +1,6 @@
 import "./App.css";
 import {Routes, Route} from "react-router-dom"
-import { Login, SignUp, MockAPI, NotesList, Archive, Trash } from "./pages/pages";
+import { Login, SignUp, MockAPI, NotesList, Archive, Trash, Page404 } from "./pages/pages";
 import {Header} from "./components/components";
 import { ToastContainer } from "react-toastify";
 import { useNote } from "./contexts/contexts";
@@ -21,6 +21,7 @@ function App() {
           <Route path="/trash" element={<Trash/>} />
           <Route path="/archive" element={<Archive/>} />
           <Route path="/api" element={<MockAPI/>} />
+          <Route path="*" element={<Page404/>} />
         </Routes>
       </div>
       <ToastContainer position="top-right"/>
