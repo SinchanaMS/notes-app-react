@@ -1,15 +1,19 @@
 import "../styles/filters.css"
 import {useState} from "react"
 import { useFilter } from "../contexts/FilterContext"
+import { useAuth } from "../contexts/AuthContext"
 
 export default function Filters() {
 
     const {filterState, filterDispatch} = useFilter()
-
+    const {loggedIn} = useAuth()
     const [showFilters, setShowFilters] = useState(false)
  
     return (
+        
         <div className='filter-by'>
+            {loggedIn &&
+            <>
             <p className="filter-title" onClick={() =>setShowFilters(!showFilters)}>Filter:</p>
             
             <div className={showFilters ? 'filter-options shadow active' : 'filter-options shadow'}>
@@ -52,6 +56,7 @@ export default function Filters() {
                     </label>
                 </div>
             </div>
+            </>}
         </div>
     )
 }

@@ -13,10 +13,11 @@ export default function NotesList() {
   const finalNotesList = getNotes(filterState, notes)
 
   return (
-    <div>      
+    <div>   
+      {loggedIn &&   
       <button className={showEditor ? 'create-note hide' : 'create-note'} type="submit" onClick={()=> setShowEditor(!showEditor)}>
         <span class="material-icons md-18 material-icons-outlined ">add</span>
-      </button>
+      </button>}
       {showEditor && 
         <div className='editor-container'>
           <AddNote setShowEditor={setShowEditor} key={showEditor}/>
@@ -40,7 +41,7 @@ export default function NotesList() {
             <Note note = {note} key={note._id}/>
           ))}
         </div> 
-        : <div className='empty-page home'>
+        : <div className='empty-page login'>
             <img src={empty}/>
             <h3>Login to view your notes!</h3>
           </div>

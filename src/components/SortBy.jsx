@@ -1,14 +1,18 @@
 import "../styles/sortby.css"
 import {useState} from "react"
 import { useFilter } from "../contexts/FilterContext"
+import { useAuth } from "../contexts/AuthContext"
 
 export default function SortBy() {
     
     const [showSort, setShowSort] = useState(false)
     const {filterDispatch} = useFilter()
+    const {loggedIn} = useAuth()
     
     return (
         <div className='sort-by'>
+             {loggedIn &&
+            <>
             <p className="sort-title" onClick={() =>setShowSort(!showSort)}>Sort By:</p>
             <div className={showSort ? 'sort-options shadow active' : 'sort-options shadow'}>
                 <div className="sort-option">Date Created
@@ -21,6 +25,7 @@ export default function SortBy() {
                     <p className='p-sm sort' data-value="Low to High" onClick={(e) => filterDispatch({type: "SORTBY", payload: "LOW-TO-HIGH"})}>Low to High</p>
                 </div>
             </div>
+            </>}
         </div>
     )
 }
