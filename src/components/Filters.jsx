@@ -1,11 +1,11 @@
 import "../styles/filters.css"
 import {useState} from "react"
-import { useFilter } from "../contexts/FilterContext"
-import { useAuth } from "../contexts/AuthContext"
+import { useFilter, useAuth, useNote } from "../contexts/contexts"
 
 export default function Filters() {
 
     const {filterState, filterDispatch} = useFilter()
+    const {allLabelsList} = useNote()
     const {loggedIn} = useAuth()
     const [showFilters, setShowFilters] = useState(false)
  
@@ -20,27 +20,11 @@ export default function Filters() {
                 <button className="clear-filter" onClick={(e) => filterDispatch({type: "CLEAR"})}>Clear Filters</button>
                 <div className="filter-option">
                     <p>Labels</p>
-                    <label className="label filter">
-                        <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "Work")}  value="Work" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>Work
-                    </label>
-                    <label className="label filter">
-                        <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "Personal")} value="Personal" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>Personal
-                    </label>
-                    <label className="label filter">
-                        <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "Creativity")} value="Creativity" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>Creativity
-                    </label>
-                    <label className="label filter">
-                        <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "Shopping List")} value="Shopping List" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>Shopping List
-                    </label>
-                    <label className="label filter">
-                        <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "To-do")} value="To-do" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>To-do
-                    </label>
-                    <label className="label filter">
-                        <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "In Progress")} value="In Progress" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>In Progress
-                    </label>
-                    <label className="label filter">
-                        <input type="checkbox" name="label" checked={filterState.labels.find(label => label === "Completed")} value="Completed" onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>Completed
-                    </label>
+                    {allLabelsList.map(label => (
+                         <label className="label filter">
+                         <input type="checkbox" name="label" checked={filterState.labels.find(label => label === {label})}  value={label} onChange={(e) => filterDispatch({type: "LABEL", payload: e.target.value})}/>{label}
+                     </label>
+                    ))}
                 </div>
 
                 <div className="filter-option">

@@ -14,7 +14,7 @@ export default function ({note}) {
   
   return (
     <div className='note' style={{ backgroundColor: note.bgColor }}>
-      <div className="note-header">
+      <header className="note-header">
         <p className='note-title'>{note.title}</p>
         <div className="note-header-options">
           <p className="priority-label p-sm">{note.priority === "1" ? "High" : note.priority === "2" ? "Medium" : note.priority === "3" ? "Low" : "" }</p>
@@ -22,15 +22,15 @@ export default function ({note}) {
           edit
           </span>        
         </div>  
-      </div>
+      </header>
       <p className='note-body' dangerouslySetInnerHTML={{__html: note.body}}></p>
-      <div className='note-footer'>
+      <footer className='note-footer'>
         <p className="created-date">{note.date}</p>
         <div className="note-actions">
           <button className="archive-note" onClick={()=>archiveNote(note, noteDispatch)}><span class="material-icons material-icons-outlined">archive</span></button>
           <button className="delete-note" onClick={() => deleteNote(note, noteDispatch)}><span class="material-icons material-icons-outlined delete-icon">delete</span></button>
         </div>         
-      </div>
+      </footer>
       <div className="labels-list">
         {finalLabelsList.map(label => (
         <div className="label-chip">
