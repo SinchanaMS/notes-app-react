@@ -2,16 +2,16 @@ import { useState } from "react";
 import "../styles/colorpicker.css"
 import ColorPalette from "./ColorPalette";
 
-
 export const ColorPicker = ({changeColor}) => {
     const [showColor, setShowColor] = useState(false)
+
     const colorPalette = [
-        "#c1b1d0",
-        "#b4cddb",
-        "#bbcdb3",
-        "#cccbda",
-        "#cda5b8",
-        "#d7bfc2"
+        "var(--PEACH-NOTE-BG)",
+        "var(--YELLOW-NOTE-BG)",
+        "var(--GREEN-NOTE-BG)",
+        "var(--LAVENDAR-NOTE-BG)",
+        "var(--BLUE-NOTE-BG)",
+        "var(--BROWN-NOTE-BG)"
     ]
 
     return (

@@ -1,20 +1,17 @@
-import axios from 'axios'
-import { useAuth } from '../contexts/AuthContext'
-import { useNote } from '../contexts/NoteContext'
-import { ColorPicker } from './ColorPicker'
-import Editor from './Editor'
-import Toast from './Toast'
+import { useNote } from '../contexts/contexts'
+import { Editor, ColorPicker } from './components'
 
-export default function AddNote() {
+export default function AddNote({setShowEditor}) {
 
-  const {note, setNote, setNotesData, tag, setTag} = useNote()
-  const {loggedIn} = useAuth()
-  const finalTagsList = [...new Set(note.tags)]
+  const {note, setNote, setLabel, allLabelsList, addToNotesList, editNote, addLabels, noteDispatch} = useNote()
+  const finalLabelsList = [...new Set(note.labels)]
   const initialNote = {
     title: "",
     body: "",
-    bgColor: "#d6d8cb",
-    tags: [],
+    bgColor: "var(--NOTE-BG-COLOR)",
+    labels: [],
+    priority: "3",
+    isEdited: false,
     date: new Date().toLocaleString()
   }
 
@@ -22,39 +19,20 @@ export default function AddNote() {
     setNote({...note, bgColor: (note.bgColor = color)})
   }
 
-  const addToNotesList = async (note) => {
-    if (loggedIn){
-      try {
-        const response = await axios.post('/api/notes', { note }, {
-        headers: {
-        authorization: localStorage.getItem("userToken")
-        }
-        })
-        if (response.status === 201) {
-          setNotesData(data => ({...data, notes: response.data.notes}))
-          setNote(initialNote)
-        }
-      } catch (error) {
-        Toast({type: "error", message:"Oops! Some error occurred."})
-        console.log(error)
-      }
-    } else {
-      Toast({type: "error", message:"Please login"})
-    }
-  }
-
   const handleSubmit = e => {
     e.preventDefault();
-    addToNotesList(note)
+    note.isEdited ? editNote(note, noteDispatch) : addToNotesList(note, noteDispatch)
     setNote(initialNote)
+    setShowEditor(false)
   }
 
-  const addTag = (tag) => {
-    tag.length &&
-    setNote(note => ({...note, tags: [...note.tags, tag]}))
-    setTag("")
+  const handleLabels = (label, noteDispatch) => {
+    label.length &&
+    setNote(note => ({...note, labels: [...note.labels, label]}))
+    setLabel(label)
+    addLabels(label, noteDispatch)
   }
-
+ 
   return (
     <div className="note new">
       <form onSubmit={handleSubmit}>
@@ -65,19 +43,35 @@ export default function AddNote() {
           <Editor/>
         </div>
         <div className='note-footer'>
-          <div className="tags-options">
-            <input type="text" className="tags" placeholder='Add Tags' value={tag} onChange={(e) => setTag(e.target.value)}/>
-            <span class="material-icons md-18 material-icons-outlined add-tag"  onClick={() => addTag(tag)}>add</span>
-            {finalTagsList.map(tag => (
-            <div className='tag-chip'>
-              <p>{tag}</p>
-            </div>
-          ))}
+          <div className="labels-options">
+            <select className='dropdown-labels' onClick={(e) => handleLabels(e.target.value, noteDispatch)}>
+              <option value="" disabled selected>Select Labels</option>
+              {allLabelsList.map(label => (
+                <option value={label}>{label}</option>
+              ))}
+            </select>
+
+            <select className='priority' onClick={(e)=>setNote({...note, priority: e.target.value})}>
+              <option value="" disabled selected>Select Priority</option>
+              <option value={1}>High</option>
+              <option value={2}>Medium</option>
+              <option value={3}>Low</option>
+            </select>            
           </div>
+          
           <div className='footer-ctas'>
             <ColorPicker changeColor={(color) => handleColor(note, color)}/>
-            <button className='save-note' type="submit"><span class="material-icons md-18 material-icons-outlined">add</span></button>
+            <button className='save-note' type="submit">
+              <span class="material-icons md-18 material-icons-outlined">add</span>
+            </button>
           </div>
+        </div>
+        <div className='labels-list'>
+          {finalLabelsList.map(label => (
+          <div className='label-chip'>
+            <p>{label}</p>
+          </div>
+          ))}
         </div>
       </form>
     </div>

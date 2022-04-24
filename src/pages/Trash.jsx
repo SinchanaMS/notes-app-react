@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNote } from '../contexts/NoteContext'
-import empty from "../assets/images/no_results.png"
+import empty from "../assets/images/no_results2.svg"
 import TrashNote from "../components/TrashNote"
 
 export default function Trash() {

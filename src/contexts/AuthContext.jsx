@@ -1,11 +1,13 @@
 import { createContext, useContext, useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { useFilter } from "./FilterContext"
 
 const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
 
     const [loggedIn, setLoggedIn] = useState(false)
+    const {filterDispatch} = useFilter()
     const userToken=localStorage.getItem("userToken")
     const navigate=useNavigate()
 
@@ -19,6 +21,7 @@ const AuthProvider = ({children}) => {
         localStorage.removeItem("userToken");
         setLoggedIn(false);
         navigate("/");
+        filterDispatch({type: "CLEAR"})
       };
 
     return (
