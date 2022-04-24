@@ -1,73 +1,52 @@
-.ql-container {
-	min-height: 5rem;
-	border-radius: 0 0 5px 5px;
-	font-size: 15px;
+.quill {
+	display: flex;
+	flex-direction: column-reverse;
 }
 
 .ql-container.ql-snow {
+	min-height: 5rem;
+	border-radius: 0 0 5px 5px;
+	font-size: 1rem;
 	border: none;
-}
-
-.ql-toolbar {
-	border-radius: 5px 5px 0 0;
-	background-color: #f0ecdd;
-}
-
-.quill {
-	width: 100%;
-	display: flex;
-	flex-direction: column-reverse;
-	height: 100%
 }
 
 .ql-toolbar.ql-snow {
 	display: flex;
-	padding: 0;
-	border: none;
 	padding: 10px;
-	border-radius: 0px;
+	border: none;
+	border-radius: 5px 5px 0 0;
+	background-color: var(--TOOLBAR-BG);
 }
 
 .ql-toolbar.ql-snow .ql-formats {
-	margin-right: 0;
 	display: flex;
+	margin-right: 0;
 }
 
-.ql-snow.ql-toolbar button {
-	border-radius: 4px;
+.ql-toolbar button.ql-active {
+	background-color: var(--HOVER-BG);
+	border-radius: 8px;
+	fill: black;
 }
 
-.ql-snow.ql-toolbar button:hover .ql-stroke,
-.ql-snow .ql-stroke,
-.ql-snow.ql-toolbar button.ql-active .ql-stroke,
-.ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke {
+.ql-toolbar button .ql-fill {
+	fill: black;
+}
+
+.ql-toolbar button .ql-stroke,
+.ql-picker-label .ql-stroke {
 	stroke: black;
 }
 
-.ql-snow.ql-toolbar button.ql-active {
-	background-color: #a7d2c4;
-}
-
-.ql-snow.ql-toolbar button:hover .ql-fill {
-	fill: black
-}
-
-.ql-snow.ql-toolbar button:hover,
-.ql-snow.ql-toolbar .ql-picker-label:hover,
+.ql-snow.ql-toolbar button:hover .ql-stroke,
 .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
-.ql-snow.ql-toolbar .ql-picker-label:hover {
-	color: black
+.ql-snow .ql-stroke,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke {
+	stroke: black;
 }
 
+.ql-snow.ql-toolbar button:hover .ql-fill,
 .ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
 .ql-snow.ql-toolbar button.ql-active .ql-fill {
 	fill: black
-}
-
-.ql-editor.ql-blank::before {
-	left: 1px;
-}
-
-.ql-editor {
-	padding: 12px 0px;
 }
