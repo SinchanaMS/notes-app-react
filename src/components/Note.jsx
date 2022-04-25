@@ -1,4 +1,5 @@
 import { useNote } from "../contexts/NoteContext"
+import DOMPurify from "dompurify"
 
 export default function ({note}) {
 
@@ -23,7 +24,7 @@ export default function ({note}) {
           </span>        
         </div>  
       </header>
-      <p className='note-body' dangerouslySetInnerHTML={{__html: note.body}}></p>
+      <p className='note-body' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(note.body)}}></p>
       <footer className='note-footer'>
         <p className="created-date">{note.date}</p>
         <div className="note-actions">
