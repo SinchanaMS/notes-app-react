@@ -1,34 +1,38 @@
-import { createContext, useContext, useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { useFilter } from "./FilterContext"
+import { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Toast from "../components/Toast";
 
-const AuthContext = createContext()
+import { useFilter } from "./FilterContext";
 
-const AuthProvider = ({children}) => {
+const AuthContext = createContext();
 
-    const [loggedIn, setLoggedIn] = useState(false)
-    const {filterDispatch} = useFilter()
-    const userToken=localStorage.getItem("userToken")
-    const navigate=useNavigate()
+const AuthProvider = ({ children }) => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const { filterDispatch } = useFilter();
+  const userToken = localStorage.getItem("userToken");
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (userToken) {
-          setLoggedIn(true);
-        }
-      }, [userToken]);
-   
-      const logoutHandler = () => {
-        localStorage.removeItem("userToken");
-        setLoggedIn(false);
-        navigate("/");
-        filterDispatch({type: "CLEAR"})
-      };
+  useEffect(() => {
+    if (userToken) {
+      setLoggedIn(true);
+    }
+  }, [userToken]);
 
-    return (
-    <AuthContext.Provider value={{loggedIn, setLoggedIn, logoutHandler}}>{children}</AuthContext.Provider>
-    )
-}
+  const logoutHandler = () => {
+    localStorage.removeItem("userToken");
+    setLoggedIn(false);
+    navigate("/");
+    filterDispatch({ type: "CLEAR" });
+    Toast({ type: "success", message: "Logged out successfully" });
+  };
 
-const useAuth = () => useContext(AuthContext)
+  return (
+    <AuthContext.Provider value={{ loggedIn, setLoggedIn, logoutHandler }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
-export {AuthProvider, useAuth}
+const useAuth = () => useContext(AuthContext);
+
+export { AuthProvider, useAuth };
